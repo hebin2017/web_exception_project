@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Cons.dao.User2Mapper">
+    <resultMap id="userResultMap" type="Cons.entity.User">
+        <result property="username" column="username"/>
+        <result property="company" column="company"/>
+    </resultMap>
+
+    <select id="getOne" parameterType="Long" resultMap="userResultMap">
+        select * from sys_user where id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="User">
+        insert into sys_user(id, username, display_name, company, linkman, mobile, send_bill, email, callback_url, prior_channels, password, plain_password, auth_token, salt, register_date, status, role_str,is_na,ips,auto_cache,use_back_channel,back_channels,customer_id)
+         values(#{id}, #{username}, #{displayName}, #{company}, #{linkman}, #{mobile}, #{sendBill}, #{email}, #{callbackUrl}, #{priorChannels}, #{password}, #{plainPassword}, #{authToken}, #{salt}, #{registerDate}, #{status}, #{roleStr},#{na},#{ips},#{autoCache},#{useBackChannel},#{backChannels},#{customerId});
+    </insert>
+
+    <update id="update" parameterType="User">
+        update sys_user set
+        username=#{username},
+        display_name=#{displayName},
+        company=#{company},
+        linkman=#{linkman},
+        mobile=#{mobile},
+        send_bill=#{sendBill},
+        email=#{email},
+        callback_url=#{callbackUrl},
+        prior_channels=#{priorChannels},
+        password=#{password},
+        plain_password=#{plainPassword},
+        auth_token=#{authToken},
+        salt=#{salt},
+        register_date=#{registerDate},
+        status=#{status},
+        role_str=#{roleStr},
+        is_na=#{na},
+        ips=#{ips},
+        auto_cache=#{autoCache},
+        use_back_channel=#{useBackChannel},
+        back_channels=#{backChannels},
+        customer_id=#{customerId}
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        delete from sys_user where id = #{id}
+    </delete>
+</mapper>
